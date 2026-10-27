@@ -1,0 +1,50 @@
+@model Employee
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="Employee_Id" />
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Employee_Name" class="form-label"></label>
+        <input asp-for="Employee_Name" class="form-control" />
+        <span asp-validation-for="Employee_Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Employee_Email" class="form-label"></label>
+        <input asp-for="Employee_Email" class="form-control" />
+        <span asp-validation-for="Employee_Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Employee_Phone" class="form-label"></label>
+        <input asp-for="Employee_Phone" class="form-control" />
+        <span asp-validation-for="Employee_Phone" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Employee_Salary" class="form-label"></label>
+        <input asp-for="Employee_Salary" class="form-control" />
+        <span asp-validation-for="Employee_Salary" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Employee_Hire_Data" class="form-label"></label>
+        <input asp-for="Employee_Hire_Data" type="date" class="form-control" />
+        <span asp-validation-for="Employee_Hire_Data" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Department_Id" class="form-label"></label>
+        <select asp-for="Department_Id" asp-items="ViewBag.Departments" class="form-select">
+            <option value="">-- Select Department --</option>
+        </select>
+        <span asp-validation-for="Department_Id" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Gender_id" class="form-label"></label>
+        <select asp-for="Gender_id" asp-items="ViewBag.Genders" class="form-select">
+            <option value="">-- Select Gender --</option>
+        </select>
+        <span asp-validation-for="Gender_id" class="text-danger"></span>
+    </div>
+    <div class="col-12 form-check ms-1">
+        <input asp-for="Is_Active" class="form-check-input" />
+        <label asp-for="Is_Active" class="form-check-label"></label>
+    </div>
+</div>

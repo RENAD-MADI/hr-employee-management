@@ -1,0 +1,19 @@
+@model Employee
+@{
+    ViewData["Title"] = Model.Employee_Name;
+}
+
+<h2>@Model.Employee_Name</h2>
+
+<dl class="row mt-3">
+    <dt class="col-sm-3">Email</dt><dd class="col-sm-9">@Model.Employee_Email</dd>
+    <dt class="col-sm-3">Phone</dt><dd class="col-sm-9">@Model.Employee_Phone</dd>
+    <dt class="col-sm-3">Department</dt><dd class="col-sm-9">@Model.Department?.Department_Name</dd>
+    <dt class="col-sm-3">Gender</dt><dd class="col-sm-9">@Model.Gender?.Gender_Name</dd>
+    <dt class="col-sm-3">Salary</dt><dd class="col-sm-9">@Model.Employee_Salary.ToString("N2")</dd>
+    <dt class="col-sm-3">Hire date</dt><dd class="col-sm-9">@Model.Employee_Hire_Data.ToString("yyyy-MM-dd")</dd>
+    <dt class="col-sm-3">Status</dt><dd class="col-sm-9">@(Model.Is_Active ? "Active" : "Inactive")</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Employee_Id" class="btn btn-primary">Edit</a>
+<a asp-action="Index" class="btn btn-outline-secondary">Back to list</a>

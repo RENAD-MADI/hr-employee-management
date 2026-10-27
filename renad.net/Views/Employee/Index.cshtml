@@ -1,0 +1,71 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="m-0">Employees</h2>
+    <a asp-action="Create" class="btn btn-primary">+ Add Employee</a>
+</div>
+
+@if (TempData["Message"] is string message)
+{
+    <div class="alert alert-success">@message</div>
+}
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-5">
+        <input name="search" value="@ViewBag.Search" class="form-control" placeholder="Search by name or email" />
+    </div>
+    <div class="col-md-4">
+        <select name="departmentId" asp-items="ViewBag.Departments" class="form-select">
+            <option value="">All departments</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-outline-primary w-100">Filter</button>
+    </div>
+</form>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Hire Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count == 0)
+        {
+            <tr><td colspan="9" class="text-center text-muted">No employees found.</td></tr>
+        }
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var item = Model[i];
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@item.Employee_Name</td>
+                <td>@item.Employee_Email</td>
+                <td>@item.Employee_Phone</td>
+                <td>@item.Department?.Department_Name</td>
+                <td>@item.Employee_Salary.ToString("N2")</td>
+                <td>@item.Employee_Hire_Data.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <span class="badge @(item.Is_Active ? "bg-success" : "bg-secondary")">@(item.Is_Active ? "Active" : "Inactive")</span>
+                </td>
+                <td class="text-nowrap">
+                    <a asp-action="Details" asp-route-id="@item.Employee_Id" class="btn btn-sm btn-outline-secondary">View</a>
+                    <a asp-action="Edit" asp-route-id="@item.Employee_Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Employee_Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
